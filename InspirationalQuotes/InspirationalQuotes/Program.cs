@@ -6,8 +6,9 @@ namespace InspirationalQuotes
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Here's your daily motivation:");
+            Console.WriteLine("Welcome to the textual motivator!");
             var quote = await GetDailyQuoteAsync();
+            Console.Write("Here's your daily quote: ");
             Console.WriteLine(quote);
         }
 
@@ -16,8 +17,9 @@ namespace InspirationalQuotes
             using (HttpClient client = new HttpClient())
             {
                 // API options:
-                //https://zenquotes.io/api/today
-                //https://quotes.rest/qod?category=inspire
+                // https://zenquotes.io/api/today
+                // https://quotes.rest/qod?category=inspire -- limit 5/day
+
                 string apiUrl = "https://zenquotes.io/api/today";
                 string response = await client.GetStringAsync(apiUrl);
 
@@ -29,5 +31,7 @@ namespace InspirationalQuotes
                 return quote;
             }
         }
+
+        // TODO: Find Bible verses that health and fitness--use labs.bible.org API
     }
 }
